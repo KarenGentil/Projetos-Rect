@@ -1,0 +1,100 @@
+2) Contador:
+Desenvolva um contador simples que permita ao usuário aumentar e diminuir um valor, com botões de incremento e decremento.
+
+Este código renderiza um contador que exibe um valor inicial de zero. O usuário pode clicar nos botões "Incrementar" e "Decrementar" para aumentar ou diminuir o valor do contador, respectivamente. O valor atual do contador é exibido em tempo real na tela.
+
+
+import React, { useState } from 'react';
+
+function Contador() {
+  const [contador, setContador] = useState(0);
+
+  const incrementar = () => {
+    setContador(contador + 1);
+  };
+
+  const decrementar = () => {
+    setContador(contador - 1);
+  };
+
+  return (
+    <div>
+      <h2>Contador</h2>
+      <p>Valor: {contador}</p>
+      <button onClick={incrementar}>Incrementar</button>
+      <button onClick={decrementar}>Decrementar</button>
+    </div>
+  );
+}
+
+export default Contador;
+
+Para usar este componente em sua aplicação, basta importá-lo onde desejar e incluí-lo em sua estrutura de renderização. Por exemplo:
+
+import React from 'react';
+import Contador from './Contador';
+
+function App() {
+  return (
+    <div className="App">
+      <Contador />
+    </div>
+  );
+}
+
+export default App;
+
+1) Importações:
+
+import React, { useState } from 'react';
+
+- Importa o React, necessário para escrever componentes React.
+- Importa o useState do React, que é um Hook para adicionar o estado a componentes funcionais.
+
+2) Definição do Componente Contador:
+
+function Contador() {
+
+- Define uma função componente chamada Contador.
+
+3) Estado Inicial:
+
+const [contador, setContador] = useState(0);
+
+- Define um estado usando o useState: contador para armazenar o valor atual do contador e setContador para atualizar esse valor.
+- O estado inicial do contador é 0.
+
+4) Funções de Incremento e Decremento:
+
+const incrementar = () => {
+  setContador(contador + 1);
+};
+
+const decrementar = () => {
+  setContador(contador - 1);
+};
+
+- Define duas funções: incrementar e decrementar, que atualizam o estado contador aumentando ou diminuindo seu valor em 1, respectivamente.
+
+5) Renderização do Componente:
+
+return (
+  <div>
+    <h2>Contador</h2>
+    <p>Valor: {contador}</p>
+    <button onClick={incrementar}>Incrementar</button>
+    <button onClick={decrementar}>Decrementar</button>
+  </div>
+);
+
+- Retorna o JSX que representa o componente Contador.
+- Renderiza um cabeçalho <h2> com o texto "Contador".
+- Renderiza um parágrafo <p> que exibe o valor atual do contador.
+- Renderiza dois botões: um para incrementar o contador e outro para decrementar.
+- Quando os botões são clicados, as funções incrementar e decrementar são chamadas.
+
+6) Exportação do Componente:
+
+export default Contador;
+
+Exporta o componente Contador para que ele possa ser importado e usado em outros arquivos.

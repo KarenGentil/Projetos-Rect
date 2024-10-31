@@ -1,0 +1,92 @@
+3) Relógio Digital:
+Construa um relógio digital que exiba a hora atual e atualize em tempo real.
+
+Este código renderiza um relógio digital que exibe a hora atual em tempo real. O valor do relógio é atualizado a cada segundo, graças ao uso do Hook useEffect para criar um intervalo que atualiza o estado do relógio a cada segundo.
+
+import React, { useState, useEffect } from 'react';
+
+function RelogioDigital() {
+  const [hora, setHora] = useState(new Date().toLocaleTimeString());
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setHora(new Date().toLocaleTimeString());
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div>
+      <h2>Relógio Digital</h2>
+      <p>{hora}</p>
+    </div>
+  );
+}
+
+export default RelogioDigital;
+
+- Para usar este componente em sua aplicação, basta importá-lo onde desejar e incluí-lo em sua estrutura de renderização. Por exemplo:
+
+import React from 'react';
+import RelogioDigital from './RelogioDigital';
+
+function App() {
+  return (
+    <div className="App">
+      <RelogioDigital />
+    </div>
+  );
+}
+
+export default App;
+
+1) Importações:
+
+import React, { useState, useEffect } from 'react';
+
+- Importa o React, necessário para escrever componentes React.
+- Importa o useState e o useEffect do React, que são Hooks para adicionar estado e efeitos a componentes funcionais, respectivamente.
+
+2) Definição do Componente RelogioDigital:
+
+function RelogioDigital() {
+
+- Define uma função componente chamada RelogioDigital.
+
+3) Estado Inicial:
+const [hora, setHora] = useState(new Date().toLocaleTimeString());
+
+- Define um estado usando o useState: hora para armazenar a hora atual do relógio e setHora para atualizar esse valor.
+- O estado inicial do relógio é definido como a hora atual usando new Date().toLocaleTimeString().
+
+4) Hook useEffect:
+
+useEffect(() => {
+  const interval = setInterval(() => {
+    setHora(new Date().toLocaleTimeString());
+  }, 1000);
+
+  return () => clearInterval(interval);
+}, []);
+
+-Utiliza o useEffect para executar um efeito sempre que o componente for montado.
+-Dentro do useEffect, é criado um intervalo que atualiza o estado hora a cada segundo, utilizando setInterval.
+-O retorno de useEffect limpa o intervalo criado quando o componente for desmontado, para evitar vazamento de memória.
+
+5) Renderização do Componente:
+
+return (
+  <div>
+    <h2>Relógio Digital</h2>
+    <p>{hora}</p>
+  </div>
+);
+
+- Retorna o JSX que representa o componente RelogioDigital.
+- Renderiza um cabeçalho <h2> com o texto "Relógio Digital".
+- Renderiza um parágrafo <p> que exibe o valor atual da hora, armazenado no estado hora.
+
+Exportação do Componente:
+export default RelogioDigital;
+Exporta o componente RelogioDigital para que ele possa ser importado e usado em outros arquivos.

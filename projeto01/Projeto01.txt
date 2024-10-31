@@ -1,0 +1,158 @@
+1) Lista de Tarefas:
+Crie uma aplicação simples onde o usuário pode adicionar, remover e marcar tarefas como concluídas.
+
+Código:
+
+import React, { useState } from 'react';
+
+function ListaDeTarefas() {
+  const [tarefas, setTarefas] = useState([]);
+  const [novaTarefa, setNovaTarefa] = useState('');
+
+  const adicionarTarefa = () => {
+    if (novaTarefa.trim() !== '') {
+      setTarefas([...tarefas, novaTarefa]);
+      setNovaTarefa('');
+    }
+  };
+
+  const removerTarefa = (index) => {
+    const novasTarefas = [...tarefas];
+    novasTarefas.splice(index, 1);
+    setTarefas(novasTarefas);
+  };
+
+  return (
+    <div>
+      <h2>Lista de Tarefas</h2>
+      <input
+        type="text"
+        value={novaTarefa}
+        onChange={(e) => setNovaTarefa(e.target.value)}
+        placeholder="Adicione uma nova tarefa"
+      />
+      <button onClick={adicionarTarefa}>Adicionar</button>
+      <ul>
+        {tarefas.map((tarefa, index) => (
+          <li key={index}>
+            {tarefa}{' '}
+            <button onClick={() => removerTarefa(index)}>Remover</button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default ListaDeTarefas;
+
+
+Para usar esse componente em sua aplicação, basta importá-lo onde desejar e incluí-lo em sua estrutura de renderização. Por exemplo:
+
+import React from 'react';
+import ListaDeTarefas from './ListaDeTarefas';
+
+function App() {
+  return (
+    <div className="App">
+      <ListaDeTarefas />
+    </div>
+  );
+}
+
+export default App;
+
+Este código renderizará uma lista de tarefas onde o usuário pode adicionar novas tarefas, e cada tarefa terá um botão "Remover" para excluí-la da lista.
+
+1) Importações:
+
+import React, { useState } from 'react';
+
+- Importa o React, necessário para escrever componentes React.
+- Importa o useState do React, que é um Hook para adicionar o estado a componentes funcionais.
+
+2) Definição do Componente ListaDeTarefas:
+
+function ListaDeTarefas() {
+
+- Define uma função componente chamada ListaDeTarefas.
+
+3) Estado Inicial:
+
+const [tarefas, setTarefas] = useState([]);
+const [novaTarefa, setNovaTarefa] = useState('');
+
+ - Define dois estados usando o useState: tarefas para armazenar a lista de tarefas e novaTarefa para armazenar o conteúdo da nova tarefa que está sendo digitada.
+
+4) Função adicionarTarefa:
+
+const adicionarTarefa = () => {
+  if (novaTarefa.trim() !== '') {
+    setTarefas([...tarefas, novaTarefa]);
+    setNovaTarefa('');
+  }
+};
+
+- Define uma função para adicionar uma nova tarefa à lista de tarefas.
+- Verifica se a nova tarefa não está vazia antes de adicioná-la à lista.
+- Atualiza o estado tarefas adicionando a nova tarefa à lista existente.
+- Limpa o campo novaTarefa após adicionar a tarefa.
+
+5) Função removerTarefa:
+
+const removerTarefa = (index) => {
+  const novasTarefas = [...tarefas];
+  novasTarefas.splice(index, 1);
+  setTarefas(novasTarefas);
+};
+
+- Define uma função para remover uma tarefa da lista de tarefas.
+- Cria uma cópia do array de tarefas usando o operador spread (...) para evitar mutações diretas no estado.
+- Remove a tarefa na posição index do array de tarefas usando o método splice.
+- Atualiza o estado tarefas com a nova lista de tarefas sem a tarefa removida.
+
+6) Renderização do Componente:
+
+return (
+  <div>
+    {/* ... */}
+  </div>
+);
+Retorna o JSX que representa o componente ListaDeTarefas.
+
+7) Controle de Entrada e Botão Adicionar:
+
+<input
+  type="text"
+  value={novaTarefa}
+  onChange={(e) => setNovaTarefa(e.target.value)}
+  placeholder="Adicione uma nova tarefa"
+/>
+<button onClick={adicionarTarefa}>Adicionar</button>
+
+- Renderiza um campo de entrada de texto onde o usuário pode digitar uma nova tarefa.
+- O valor do campo de entrada é controlado pelo estado novaTarefa.
+- Quando o usuário digita no campo, a função setNovaTarefa é chamada para atualizar o estado novaTarefa.
+- Renderiza um botão "Adicionar" que chama a função adicionarTarefa quando clicado.
+
+Lista de Tarefas:
+
+<ul>
+  {tarefas.map((tarefa, index) => (
+    <li key={index}>
+      {tarefa}{' '}
+      <button onClick={() => removerTarefa(index)}>Remover</button>
+    </li>
+  ))}
+</ul>
+
+- Renderiza a lista de tarefas usando tarefas.map, que mapeia cada tarefa para um elemento <li> na lista.
+- Cada elemento <li> tem um botão "Remover" que chama a função removerTarefa quando clicado, passando o índice da tarefa como argumento.
+- Cada elemento <li> é atribuído uma chave única index.
+
+9) Exportação do Componente:
+
+export default ListaDeTarefas;
+
+- Exporta o componente ListaDeTarefas para que ele possa ser importado e usado em outros arquivos.
+

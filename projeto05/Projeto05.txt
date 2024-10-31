@@ -1,0 +1,165 @@
+5) Calculadora Simples:
+Desenvolva uma calculadora básica que permita ao usuário fazer operações simples de adição, subtração, multiplicação e divisão.
+
+Aqui está um exemplo simples de código para um projeto de calculadora simples em React.js:
+
+import React, { useState } from 'react';
+
+function Calculadora() {
+  const [expressao, setExpressao] = useState('');
+  const [resultado, setResultado] = useState('');
+
+  const handleClick = (value) => {
+    setExpressao(expressao + value);
+  };
+
+  const calcularResultado = () => {
+    try {
+      const resultadoCalculado = eval(expressao);
+      setResultado(resultadoCalculado);
+    } catch (error) {
+      setResultado('Erro');
+    }
+  };
+
+  const limparTudo = () => {
+    setExpressao('');
+    setResultado('');
+  };
+
+  return (
+    <div>
+      <h2>Calculadora Simples</h2>
+      <input
+        type="text"
+        value={expressao}
+        readOnly
+        style={{ marginBottom: '10px' }}
+      />
+      <div>
+        <button onClick={() => handleClick('1')}>1</button>
+        <button onClick={() => handleClick('2')}>2</button>
+        <button onClick={() => handleClick('3')}>3</button>
+        <button onClick={() => handleClick('+')}>+</button>
+      </div>
+      <div>
+        <button onClick={() => handleClick('4')}>4</button>
+        <button onClick={() => handleClick('5')}>5</button>
+        <button onClick={() => handleClick('6')}>6</button>
+        <button onClick={() => handleClick('-')}>-</button>
+      </div>
+      <div>
+        <button onClick={() => handleClick('7')}>7</button>
+        <button onClick={() => handleClick('8')}>8</button>
+        <button onClick={() => handleClick('9')}>9</button>
+        <button onClick={() => handleClick('*')}>*</button>
+      </div>
+      <div>
+        <button onClick={() => handleClick('0')}>0</button>
+        <button onClick={() => handleClick('.')}>.</button>
+        <button onClick={calcularResultado}>=</button>
+        <button onClick={() => handleClick('/')}>/</button>
+      </div>
+      <button onClick={limparTudo} style={{ marginTop: '10px' }}>Limpar</button>
+      <div>
+        <p>Resultado: {resultado}</p>
+      </div>
+    </div>
+  );
+}
+
+export default Calculadora;
+
+Este código renderiza uma calculadora básica onde o usuário pode inserir expressões matemáticas simples e ver o resultado. A função eval é usada para calcular o resultado da expressão inserida pelo usuário.
+
+1) Importações:
+
+import React, { useState } from 'react';
+
+Importa o React, necessário para escrever componentes React.
+Importa o useState do React, que é um Hook para adicionar estado a componentes funcionais.
+
+2) Definição do Componente Calculadora:
+
+function Calculadora() {
+Define uma função componente chamada Calculadora.
+
+3) Estado Inicial:
+
+const [expressao, setExpressao] = useState('');
+const [resultado, setResultado] = useState('');
+
+Define dois estados utilizando o useState:
+expressao: para armazenar a expressão matemática inserida pelo usuário.
+resultado: para armazenar o resultado da expressão matemática.
+
+4) Função handleClick para lidar com cliques nos botões:
+
+const handleClick = (value) => {
+  setExpressao(expressao + value);
+};
+
+Define uma função para lidar com os cliques nos botões da calculadora.
+Quando um botão é clicado, concatena o valor do botão à expressão atual e atualiza o estado expressao.
+
+5) Função calcularResultado para calcular o resultado da expressão:
+
+const calcularResultado = () => {
+  try {
+    const resultadoCalculado = eval(expressao);
+    setResultado(resultadoCalculado);
+  } catch (error) {
+    setResultado('Erro');
+  }
+};
+
+Define uma função para calcular o resultado da expressão matemática inserida pelo usuário.
+Utiliza o método eval para avaliar a expressão e calcular o resultado.
+Se ocorrer um erro durante a avaliação da expressão, define o resultado como 'Erro'.
+
+6) Função limparTudo para limpar a expressão e o resultado:
+
+const limparTudo = () => {
+  setExpressao('');
+  setResultado('');
+};
+
+Define uma função para limpar a expressão e o resultado, resetando ambos os estados.
+
+7) Renderização do Componente:
+
+return (
+  <div>
+    {/* Elementos de interface da calculadora */}
+  </div>
+);
+
+Retorna o JSX que representa o componente Calculadora.
+
+8) Elementos de Interface do Usuário:
+
+<input
+  type="text"
+  value={expressao}
+  readOnly
+  style={{ marginBottom: '10px' }}
+/>
+{/* Botões para os dígitos, operadores e botão de calcular */}
+{/* Botão para limpar a calculadora */}
+<div>
+  <p>Resultado: {resultado}</p>
+</div>
+
+Renderiza um campo de entrada de texto que exibe a expressão matemática inserida pelo usuário.
+Renderiza botões para os dígitos de 0 a 9, operadores matemáticos (+, -, *, /), ponto decimal (.) e botão de calcular (=).
+Renderiza um botão para limpar a calculadora.
+Exibe o resultado da expressão matemática.
+
+9) Exportação do Componente:
+
+export default Calculadora;
+
+Exporta o componente Calculadora para que ele possa ser importado e usado em outros arquivos.
+
+
+
